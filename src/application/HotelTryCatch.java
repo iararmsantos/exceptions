@@ -38,15 +38,11 @@ public class HotelTryCatch {
             System.out.print("Check-out: ");
             Date outUp = sdf.parse(k.next());
             
-            Date now = new Date();
-            if(inUp.before(now) || outUp.before(now)){
-                System.out.println("Error in reservation: Reservation dates for update must be future dates");
-            }else if(!out.after(inUp)){
-            System.out.println("Error in reservation: Check-out must be after check-in date");
+            String error = res.updateDate(inUp, outUp);
+            if(error != null){
+                System.out.println("Error in reservation: " + error);   
             }else{
-                res.updateDate(inUp, outUp);
-
-                System.out.println(res);
+                System.out.println("Reservation Update: " + res);
             }
             
         }
